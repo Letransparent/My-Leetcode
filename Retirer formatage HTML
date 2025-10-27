@@ -1,0 +1,283 @@
+/****** Object:  UserDefinedFunction [dbo].[fnRetirerFormatageHTML_nvarchar]    Script Date: 10/27/2025 9:42:50 AM ******/
+
+DROP FUNCTION [dbo].[fnRetirerFormatageHTML_nvarchar]
+
+GO
+ 
+/****** Object:  UserDefinedFunction [dbo].[fnRetirerFormatageHTML_nvarchar]    Script Date: 10/27/2025 9:42:50 AM ******/
+
+SET ANSI_NULLS ON
+
+GO
+ 
+SET QUOTED_IDENTIFIER ON
+
+GO
+ 
+ 
+CREATE FUNCTION [dbo].[fnRetirerFormatageHTML_nvarchar]
+
+(
+
+	@HTMLText NVARCHAR(MAX)
+
+)
+
+RETURNS NVARCHAR(MAX)
+
+AS
+
+BEGIN
+ 
+    DECLARE @Start  INT
+
+    DECLARE @End    INT
+
+    DECLARE @Length INT
+
+    SET @HTMLText = REPLACE(@htmlText, '<br>',CHAR(13) + CHAR(10))
+
+    SET @HTMLText = REPLACE(@htmlText, '<br/>',CHAR(13) + CHAR(10))
+
+    SET @HTMLText = REPLACE(@htmlText, '<br />',CHAR(13) + CHAR(10))
+
+    SET @HTMLText = REPLACE(@htmlText, '<li>','- ')
+
+    SET @HTMLText = REPLACE(@htmlText, '</li>',CHAR(13) + CHAR(10))
+
+    SET @HTMLText = REPLACE(@htmlText, '&#39;', '''' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&rsquo;', '''' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&quot;', '"' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&amp;', '&' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&euro;', '€' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&lt;', '<' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&gt;', '>' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&nbsp;', ' ' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&copy;', '©' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&laquo;', '«' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&reg;', '®' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&plusmn;', '±' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&sup2;', '²' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&sup3;', '³' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&micro;', 'µ' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&middot;', '·' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&ordm;', 'º' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&raquo;', '»' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&frac14;', '¼' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&frac12;', '½' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&frac34;', '¾' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&divide;', '÷' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&lsaquo;', '<' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&rsaquo;', '>' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&mdash;', '—' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&ndash;', '–' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&para;', '§' )
+
+    SET @HTMLText = REPLACE(@htmlText, '&bull;', '•' )
+
+	SET @HTMLText = REPLACE(@htmlText, '&hellip;', '…' )
+
+	SET @HTMLText = REPLACE(@htmlText, '&deg;', '°' )
+
+	SET @HTMLText = REPLACE(@htmlText, '&cedil;', '¸' )
+
+	SET @HTMLText = REPLACE(@htmlText, '&lsquo;', '‘' )
+
+	SET @HTMLText = REPLACE(@htmlText, '&rsquo;', '’' )
+
+	SET @HTMLText = REPLACE(@htmlText, '&uml;', '¨' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&oelig;', 'oe' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Aelig;', 'Æ' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Agrave;', 'À' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Ccedil;', 'Ç' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Egrave;', 'È' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Eacute;', 'É' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Ecirc;', 'Ê' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Ouml;', 'Ö' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Iuml;', 'Ï' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&acirc;', 'â' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&auml;', 'ä' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&euml;', 'ë' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&icirc;', 'î' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&ocirc;', 'ô' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&ugrave;', 'ù' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&uacute;', 'ú' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&ucirc;', 'û' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&uuml;', 'ü' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&agrave;', 'à' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&aelig;', 'æ' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&ccedil;', 'ç' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&egrave;', 'è' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&eacute;', 'é' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&ecirc;', 'ê' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&ouml;', 'ö' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&iuml;', 'ï' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&aacute;', 'á' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Aacute;', 'Á' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Acirc;', 'Â' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&atilde;', 'ã' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Atilde;', 'Ã' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Auml;', 'Ä' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&aring;', 'å' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Aring;', 'Å' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Euml;', 'Ë' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&igrave;', 'ì' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Igrave;', 'Ì' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&iacute;', 'í' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Iacute;', 'Í' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Icirc;', 'Î' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&ograve;', 'ò' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Ograve;', 'Ò' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&oacute;', 'ó' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Oacute;', 'Ó' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Ocirc;', 'Ô' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&otilde;', 'õ' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Otilde;', 'Õ' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Oslash;', 'Ø' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&oslash;', 'ø' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Ugrave;', 'Ù' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Uacute;', 'Ú' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Ucirc;', 'Û' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Uuml;', 'Ü' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&yacute;', 'ý' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&Yacute;', 'Ý' )
+
+    SET @HTMLText = REPLACE(@htmlText COLLATE Latin1_General_CS_AS, '&szlig;', 'ß' )
+
+    -- Remove anything between <STYLE> tags
+
+    SET @Start  = CHARINDEX('<STYLE', @HTMLText)
+
+    SET @End    = CHARINDEX('</STYLE>', @HTMLText, CHARINDEX('<', @HTMLText)) + 7
+
+    SET @Length = (@End - @Start) + 1
+
+    WHILE (@Start > 0 AND @End > 0 AND @Length > 0) 
+
+    BEGIN
+
+        SET @HTMLText   = STUFF(@HTMLText, @Start, @Length, '')
+
+        SET @Start      = CHARINDEX('<STYLE', @HTMLText)
+
+        SET @End        = CHARINDEX('</STYLE>', @HTMLText, CHARINDEX('</STYLE>', @HTMLText)) + 7
+
+        SET @Length     = (@End - @Start) + 1
+
+    END
+
+    -- Remove anything between <whatever> tags
+
+    SET @Start  = CHARINDEX('<', @HTMLText)
+
+    SET @End    = CHARINDEX('>', @HTMLText, CHARINDEX('<', @HTMLText))
+
+    SET @Length = (@End - @Start) + 1
+
+    WHILE (@Start > 0 AND @End > 0 AND @Length > 0) 
+
+    BEGIN
+
+        SET @HTMLText   = STUFF(@HTMLText, @Start, @Length, '')
+
+        SET @Start      = CHARINDEX('<', @HTMLText)
+
+        SET @End        = CHARINDEX('>', @HTMLText, CHARINDEX('<', @HTMLText))
+
+        SET @Length     = (@End - @Start) + 1
+
+    END
+
+    SET @HTMLText = COALESCE(LTRIM(RTRIM(@HTMLText)), 'Inconnu');
+ 
+    SET @HTMLText = CASE WHEN LEN(@HTMLText) = 0 THEN 'Non applicable' ELSE @HTMLText END
+ 
+    RETURN @HTMLText;
+ 
+END
+
+GO
+ 
+ 
+ 
