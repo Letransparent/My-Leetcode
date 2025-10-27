@@ -51,7 +51,9 @@ BEGIN
 
     SET @HTMLText = REPLACE(@htmlText, '&quot;', '"' )
 
-    SET @HTMLText = REPLACE(@htmlText, '&amp;', '&' )
+    -- Gérer les encodages doubles ou multiples comme &amp;amp; ...
+    WHILE CHARINDEX('&amp;', @HTMLText) > 0
+        SET @HTMLText = REPLACE(@HTMLText, '&amp;', '&')
 
     SET @HTMLText = REPLACE(@htmlText, '&euro;', '€' )
 
